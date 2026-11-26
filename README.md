@@ -6,4 +6,4 @@
 - 右上角 ⋯ 可以导出 / 导入备份 JSON
 - 纯静态，无依赖，直接用 GitHub Pages 托管
 
-打开 <https://<your-name>.github.io/web-bookmarks/> 使用。
+打开 <https://trocrouns.github.io/web-bookmarks/> 使用。
