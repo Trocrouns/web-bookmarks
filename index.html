@@ -3,112 +3,150 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0f1218">
+<meta name="theme-color" content="#F0EEE6">
 <title>我的网站收藏</title>
 <style>
   :root{
-    --bg:#0f1218; --card:#171c25; --card2:#1d2430; --line:#26303d;
-    --fg:#e7edf5; --mute:#8b98a9; --accent:#4fb3a5; --warn:#e0a44a; --danger:#e0685f;
+    --bg:#F0EEE6; --surface:#FAF9F5; --card:#FFFFFF;
+    --line:#DCD7CB; --line-soft:#E8E3D7;
+    --ink:#141413; --ink-2:#3D3D3A; --muted:#6B6862;
+    --accent:#D97757; --accent-soft:#F4E5DD; --accent-ink:#8A4B34;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;padding:0}
   body{
-    background:var(--bg);color:var(--fg);min-height:100vh;
-    font:15px/1.5 -apple-system,BlinkMacSystemFont,"Noto Sans SC","PingFang SC",system-ui,sans-serif;
-    padding:0 0 40px;
+    background:var(--bg); color:var(--ink); min-height:100vh;
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","PingFang SC",system-ui,sans-serif;
+    padding:0 0 40px; -webkit-font-smoothing:antialiased;
   }
+  .serif{font-family:ui-serif,Georgia,"Times New Roman","Songti SC","Noto Serif SC",serif}
   header{
-    position:sticky;top:0;z-index:20;background:rgba(15,18,24,.92);
-    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
-    padding:calc(10px + env(safe-area-inset-top)) 14px 10px;
+    position:sticky; top:0; z-index:20; background:rgba(240,238,230,.94);
+    backdrop-filter:blur(12px); border-bottom:1px solid var(--line);
+    padding:calc(14px + env(safe-area-inset-top)) 18px 12px;
   }
-  .topbar{display:flex;align-items:center;gap:8px}
-  .brand{flex:1;min-width:0}
-  .brand b{font-size:17px;font-weight:600;letter-spacing:.2px}
-  .brand small{display:block;color:var(--mute);font-size:12px;margin-top:1px}
-  .row{display:flex;gap:8px;align-items:center}
-  input,select,textarea,button{font-family:inherit;font-size:15px;color:var(--fg)}
+  .topbar{display:flex; align-items:flex-start; gap:10px; max-width:720px; margin:0 auto}
+  .brand{flex:1; min-width:0}
+  .brand b{display:block; font-size:21px; font-weight:400; letter-spacing:.1px; line-height:1.25}
+  .brand small{display:block; color:var(--muted); font-size:12.5px; margin-top:3px}
+  input,select,textarea,button{font-family:inherit; font-size:15px; color:var(--ink)}
   .search{
-    width:100%;background:var(--card);border:1px solid var(--line);border-radius:11px;
-    padding:9px 12px;outline:none;margin-top:10px;
+    display:block; width:100%; max-width:720px; margin:12px auto 0;
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:10px 13px; outline:none; transition:border-color .15s, box-shadow .15s;
   }
-  .search:focus{border-color:var(--accent)}
+  .search::placeholder{color:#9A968D}
+  .search:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(217,119,87,.13)}
   button{
-    background:var(--card);border:1px solid var(--line);border-radius:11px;
-    padding:9px 13px;cursor:pointer;white-space:nowrap;
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:9px 14px; cursor:pointer; color:var(--ink-2); transition:background .15s,border-color .15s;
   }
-  button:active{transform:scale(.97)}
-  button.primary{background:var(--accent);border-color:var(--accent);color:#0b1512;font-weight:600}
-  button.icon{padding:8px 11px;color:var(--mute)}
-  main{padding:14px}
-  .cat{margin-bottom:20px}
-  .cathead{display:flex;align-items:center;gap:8px;margin:0 2px 8px}
+  button:active{transform:translateY(1px)}
+  button.primary{background:var(--ink); border-color:var(--ink); color:#FAF9F5; font-weight:500}
+  button.ghost{background:transparent; border-color:transparent; color:var(--muted)}
+  .iconbtn{
+    padding:7px 11px; border-radius:9px; background:transparent; border:1px solid var(--line);
+    color:var(--muted); font-size:16px; line-height:1;
+  }
+  main{max-width:720px; margin:0 auto; padding:18px}
+  .cat{margin-bottom:26px}
+  .cathead{display:flex; align-items:baseline; gap:9px; margin:0 1px 10px}
   .cathead h2{
-    margin:0;font-size:13px;font-weight:600;letter-spacing:.6px;color:var(--accent);
-    text-transform:none;flex:1;min-width:0;
-    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+    margin:0; flex:1; min-width:0; font-size:16.5px; font-weight:600; letter-spacing:.2px;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
-  .cathead .count{color:var(--mute);font-size:12px;font-variant-numeric:tabular-nums}
-  .cathead button{padding:4px 9px;font-size:13px;border-radius:9px;background:transparent;color:var(--mute)}
+  .cathead .count{color:var(--muted); font-size:12.5px; font-variant-numeric:tabular-nums}
+  .cathead button{
+    padding:3px 8px; font-size:13px; border-radius:8px; background:transparent;
+    border-color:transparent; color:var(--muted);
+  }
   .sit{
-    display:flex;align-items:flex-start;gap:11px;background:var(--card);
-    border:1px solid var(--line);border-radius:13px;padding:11px 12px;margin-bottom:8px;
+    display:flex; align-items:flex-start; gap:12px; background:var(--surface);
+    border:1px solid var(--line-soft); border-radius:12px; padding:13px 14px; margin-bottom:9px;
+    transition:border-color .15s, box-shadow .15s, background .15s;
   }
+  .sit:hover{border-color:var(--line); box-shadow:0 1px 2px rgba(20,20,19,.05)}
   .sit .av{
-    flex:0 0 34px;height:34px;border-radius:9px;background:var(--card2);
-    display:flex;align-items:center;justify-content:center;
-    font-size:15px;font-weight:700;color:var(--accent);text-transform:uppercase;
+    flex:0 0 36px; height:36px; border-radius:9px; background:var(--accent-soft);
+    display:flex; align-items:center; justify-content:center;
+    font-size:15px; font-weight:600; color:var(--accent-ink); text-transform:uppercase;
   }
-  .sit .body{flex:1;min-width:0}
-  .sit a.t{color:var(--fg);text-decoration:none;font-weight:600;font-size:15px;
-    display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .sit .u{color:var(--mute);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
-  .sit .n{color:#b9c6d6;font-size:13px;margin-top:5px;padding-left:8px;border-left:2px solid var(--line)}
-  .sit button.more{background:transparent;border:none;color:var(--mute);padding:2px 6px;font-size:18px;line-height:1}
-  .blank{color:#6f7c8d;font-size:13px;padding:12px;border:1px dashed var(--line);border-radius:12px}
-  .empty{
-    text-align:center;color:var(--mute);padding:56px 20px;line-height:1.9;
+  .sit .body{flex:1; min-width:0}
+  .sit a.t{
+    color:var(--ink); text-decoration:none; font-weight:600; font-size:15px;
+    display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
-  .empty b{display:block;color:var(--fg);font-size:16px;margin-bottom:6px}
-  /* sheet */
-  #mask{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;z-index:40}
+  .sit a.t:hover{color:var(--accent-ink); text-decoration:underline; text-underline-offset:2px}
+  .sit .u{color:var(--muted); font-size:12.5px; margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .sit .n{
+    font-family:ui-serif,Georgia,"Songti SC",serif; font-style:italic;
+    color:var(--ink-2); font-size:14px; line-height:1.6; margin-top:7px;
+    padding-left:10px; border-left:2px solid var(--accent-soft);
+  }
+  .badge{
+    display:inline-block; margin-left:6px; padding:1px 6px; border-radius:5px;
+    font-size:10.5px; font-style:normal; font-family:-apple-system,sans-serif;
+    background:#EFE7CF; color:#7A6428; vertical-align:1px;
+  }
+  .sit button.more{
+    background:transparent; border:none; color:#A8A399; padding:2px 6px; font-size:17px; line-height:1;
+  }
+  .blank{
+    color:var(--muted); font-size:13.5px; padding:14px; border:1px dashed var(--line);
+    border-radius:12px; text-align:center;
+  }
+  .empty{text-align:center; color:var(--muted); padding:52px 16px; line-height:1.95}
+  .empty b{display:block; color:var(--ink); font-size:19px; font-weight:400; margin-bottom:8px}
+  #mask{position:fixed; inset:0; background:rgba(20,20,19,.32); display:none; z-index:40}
   #mask.on{display:block}
   .sheet{
-    position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--card2);
-    border-radius:18px 18px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom));
-    display:none;max-height:88vh;overflow:auto;
+    position:fixed; left:0; right:0; bottom:0; z-index:50; background:var(--bg);
+    border-radius:16px 16px 0 0; border-top:1px solid var(--line);
+    padding:16px 16px calc(16px + env(safe-area-inset-bottom));
+    display:none; max-height:88vh; overflow:auto;
+    box-shadow:0 -8px 30px rgba(20,20,19,.10);
   }
-  .sheet.on{display:block}
-  .sheet h3{margin:2px 0 12px;font-size:16px;font-weight:600}
+  .sheet.on{display:block; animation:up .18s ease-out}
+  @keyframes up{from{transform:translateY(14px);opacity:.7}to{transform:none;opacity:1}}
+  .sheet h3{
+    margin:0 0 14px; font-size:18px; font-weight:400; letter-spacing:.2px;
+    font-family:ui-serif,Georgia,"Songti SC",serif;
+  }
   .sheet .item{
-    padding:13px 12px;border-radius:11px;background:var(--card);margin-bottom:8px;
-    display:flex;align-items:center;gap:10px;border:1px solid var(--line);cursor:pointer;
+    padding:13px 14px; border-radius:10px; background:var(--surface); margin-bottom:8px;
+    display:flex; align-items:center; gap:10px; border:1px solid var(--line-soft); cursor:pointer;
   }
-  .sheet .item.danger{color:var(--danger)}
-  .field{margin-bottom:11px}
-  .field label{display:block;font-size:12px;color:var(--mute);margin-bottom:5px}
+  .sheet .item:active{background:#F3F1EA}
+  .sheet .item.danger{color:#A8443C}
+  .sheet .item .sub{color:var(--muted); font-size:12.5px; margin-top:2px}
+  .field{margin-bottom:13px}
+  .field label{display:block; font-size:12.5px; color:var(--muted); margin-bottom:6px}
   .field input,.field textarea,.field select{
-    width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;
-    padding:10px 11px;outline:none;
+    width:100%; background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:11px 12px; outline:none;
   }
-  .field textarea{resize:vertical;min-height:64px}
-  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent)}
-  .hint{color:var(--mute);font-size:12px}
-  .warn{background:#3a2c14;border:1px solid #6b5220;color:#f0cf95;
-    padding:9px 11px;border-radius:10px;font-size:13px;margin-bottom:12px}
-  .grp{display:flex;gap:8px}
+  .field textarea{resize:vertical; min-height:68px; font-family:inherit}
+  .field input:focus,.field textarea:focus,.field select:focus{
+    border-color:var(--accent); box-shadow:0 0 0 3px rgba(217,119,87,.13)
+  }
+  .grp{display:flex; gap:9px; margin-top:4px}
   .grp>*{flex:1}
-  .tips{color:var(--mute);font-size:12px;text-align:center;margin-top:26px;line-height:1.8}
+  .note-box{
+    background:var(--accent-soft); border:1px solid #E7CDBF; color:#6E4130;
+    padding:11px 13px; border-radius:10px; font-size:13px; line-height:1.65; margin-bottom:14px;
+  }
+  .tips{color:#8E8A81; font-size:12px; text-align:center; margin-top:30px; line-height:1.9}
+  .tips a{color:var(--accent-ink)}
 </style>
 </head>
 <body>
 <header>
   <div class="topbar">
-    <div class="brand">
+    <div class="brand serif">
       <b>我的网站收藏</b>
-      <small id="stat">还没有收录</small>
+      <small id="stat">正在读取…</small>
     </div>
-    <button class="icon" id="btnTools" title="备份">⋯</button>
+    <button class="iconbtn" id="btnTools" aria-label="更多">⋯</button>
   </div>
   <input class="search" id="q" placeholder="搜名称、网址、备注、分类…" autocomplete="off">
 </header>
@@ -120,40 +158,50 @@
 
 <script>
 "use strict";
-var KEY = "web-collect-v1";
-var storeOK = true;
-try { localStorage.setItem("__t", "1"); localStorage.removeItem("__t"); }
-catch (e) { storeOK = false; }
-
-var db = load();
+var KEY = "web-collect-draft-v1";
+var cloud = emptyDb();   // 线上 data.json（所有人共用）
+var local = loadDraft(); // 这台机器上的草稿
+var loadErr = "";
 var q = "";
 
 function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
-
 function emptyDb(){ return { v:1, cats:[] }; }
 
-function load(){
-  if (!storeOK) return emptyDb();
+function loadDraft(){
   try {
     var raw = localStorage.getItem(KEY);
     if (!raw) return emptyDb();
     var d = JSON.parse(raw);
-    if (!d || !Array.isArray(d.cats)) return emptyDb();
-    d.cats = d.cats.filter(function(c){ return c && typeof c.name === "string"; }).map(function(c){
-      c.id = c.id || uid();
-      c.sites = (Array.isArray(c.sites) ? c.sites : []).filter(function(s){ return s && s.url; }).map(function(s){
-        return { id: s.id || uid(), title: s.title || hostOf(s.url), url: s.url, note: s.note || "" };
-      });
-      return c;
-    });
-    return d;
+    return (d && Array.isArray(d.cats)) ? normalize(d) : emptyDb();
   } catch (e) { return emptyDb(); }
 }
+function saveDraft(){
+  try { localStorage.setItem(KEY, JSON.stringify(local)); }
+  catch (e) { /* 存不了就算了，导出还能用 */ }
+}
+function normalize(d){
+  d.cats = (d.cats || []).filter(function(c){ return c && typeof c.name === "string"; }).map(function(c){
+    c.id = c.id || uid();
+    c.sites = (Array.isArray(c.sites) ? c.sites : []).filter(function(s){ return s && s.url; }).map(function(s){
+      return { id: s.id || uid(), title: s.title || hostOf(s.url), url: s.url, note: s.note || "" };
+    });
+    return c;
+  });
+  return d;
+}
 
-function save(){
-  if (!storeOK) return;
-  try { localStorage.setItem(KEY, JSON.stringify(db)); }
-  catch (e) { storeOK = false; render(); }
+/* 云端 + 本地草稿合并：同名分类合到一起，本地新加的带 ★ */
+function merged(){
+  var out = JSON.parse(JSON.stringify(cloud));
+  local.cats.forEach(function(lc){
+    var c = out.cats.filter(function(x){ return x.name === lc.name; })[0];
+    if (!c) { c = { id: "L" + lc.id, name: lc.name, sites: [], local: true }; out.cats.push(c); }
+    lc.sites.forEach(function(s){
+      var s2 = { id: "L" + s.id, title: s.title, url: s.url, note: s.note, local: true };
+      c.sites.push(s2);
+    });
+  });
+  return out;
 }
 
 function esc(s){
@@ -161,50 +209,72 @@ function esc(s){
     return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[m];
   });
 }
-
 function normUrl(u){
   u = String(u || "").trim();
   if (!u) return "";
   if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(u) && !/^mailto:/i.test(u)) u = "https://" + u;
   return u;
 }
-
 function hostOf(u){
   try { return new URL(normUrl(u)).hostname.replace(/^www\./, ""); }
   catch (e) { return String(u || ""); }
 }
 
-function findSite(id){
-  for (var i=0;i<db.cats.length;i++)
-    for (var j=0;j<db.cats[i].sites.length;j++)
-      if (db.cats[i].sites[j].id === id) return { cat: db.cats[i], site: db.cats[i].sites[j], ci:i, si:j };
-  return null;
+/* ---------- 读云端数据 ---------- */
+function loadCloud(){
+  var url = "data.json?t=" + Date.now();
+  if (!window.fetch) { loadErr = "浏览器太老，读不到线上数据"; render(); return; }
+  fetch(url, { cache: "no-store" }).then(function(r){
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.json();
+  }).then(function(d){
+    if (!d || !Array.isArray(d.cats)) throw new Error("data.json 格式不对");
+    cloud = normalize(d);
+    loadErr = "";
+    render();
+  }).catch(function(e){
+    loadErr = (location.protocol === "file:")
+      ? "本地文件方式打不开 data.json，请用线上地址"
+      : "线上数据没读出来（" + e.message + "）";
+    render();
+  });
 }
 
 /* ---------- render ---------- */
+var view = emptyDb();
+
+function findSite(id){
+  for (var i=0;i<view.cats.length;i++)
+    for (var j=0;j<view.cats[i].sites.length;j++)
+      if (view.cats[i].sites[j].id === id) return { cat: view.cats[i], site: view.cats[i].sites[j], ci:i, si:j };
+  return null;
+}
+
 function render(){
+  view = merged();
   var list = document.getElementById("list");
-  var total = db.cats.reduce(function(n,c){ return n + c.sites.length; }, 0);
+  var total = view.cats.reduce(function(n,c){ return n + c.sites.length; }, 0);
+  var lcount = local.cats.reduce(function(n,c){ return n + c.sites.length; }, 0);
   document.getElementById("stat").textContent =
-    total ? (db.cats.length + " 个分类 · " + total + " 个网站") : "还没有收录";
+    (total ? (view.cats.length + " 个分类 · " + total + " 个网站") : "还没有收录")
+    + (lcount ? " · 本机待发布 " + lcount : "");
+
+  var html = "";
+  if (loadErr) html += '<div class="note-box">' + esc(loadErr) + "。线上收藏暂时看不到，只能用本机草稿。</div>";
 
   var kw = q.trim().toLowerCase();
-  var html = "";
 
-  if (!storeOK) {
-    html += '<div class="warn">这个浏览器不允许本地保存（多半是直接用文件方式打开的）。点右上角 ⋯ → 导出备份，换到能保存的环境再导入。</div>';
-  }
-
-  if (!db.cats.length) {
-    html += '<div class="empty"><b>先建一个分类吧</b>比如「在线工具」「素材站」「AI 服务」<br>'
-          + '同一个功能可以放好几个网站，备注里写清哪个好用、哪个有收藏意义</div>';
-    html += '<div style="text-align:center"><button class="primary" data-act="newcat">＋ 新建分类</button></div>';
+  if (!view.cats.length) {
+    html += '<div class="empty"><b class="serif">先建一个分类</b>'
+          + '比如「在线工具」「素材站」「AI 服务」<br>'
+          + '同一个功能可以放好几个网站，备注里写清哪个好用、哪个有收藏意义</div>'
+          + '<div style="text-align:center"><button class="primary" data-act="newcat">＋ 新建分类</button></div>';
     list.innerHTML = html;
     return;
   }
 
   var shown = 0;
-  db.cats.forEach(function(cat, ci){
+  view.cats.forEach(function(cat, ci){
     var sites = cat.sites;
     if (kw) {
       sites = sites.filter(function(s){
@@ -214,23 +284,22 @@ function render(){
     }
     shown += sites.length;
     html += '<section class="cat">';
-    html += '<div class="cathead"><h2>' + esc(cat.name) + '</h2>'
+    html += '<div class="cathead"><h2 class="serif">' + esc(cat.name) + '</h2>'
           + '<span class="count">' + cat.sites.length + '</span>'
-          + '<button data-act="addsite" data-ci="' + ci + '">＋</button>'
-          + '<button data-act="catmenu" data-ci="' + ci + '">⋯</button></div>';
-    if (!sites.length) {
-      html += '<div class="blank">还没有网站，点上面的 ＋ 加一个</div>';
-    }
+          + '<button data-act="addsite" data-ci="' + ci + '" aria-label="加网站">＋</button>'
+          + '<button data-act="catmenu" data-ci="' + ci + '" aria-label="分类菜单">⋯</button></div>';
+    if (!sites.length) html += '<div class="blank">还没有网站，点上面的 ＋ 加一个</div>';
     sites.forEach(function(s){
       var h = hostOf(s.url);
       html += '<div class="sit">'
-            + '<div class="av">' + esc((h.charAt(0) || "?")) + '</div>'
+            + '<div class="av">' + esc(h.charAt(0) || "?") + '</div>'
             + '<div class="body">'
-            +   '<a class="t" href="' + esc(normUrl(s.url)) + '" target="_blank" rel="noopener">' + esc(s.title || h) + '</a>'
+            +   '<a class="t" href="' + esc(normUrl(s.url)) + '" target="_blank" rel="noopener">' + esc(s.title || h)
+            +     (s.local ? '<span class="badge">本机</span>' : '') + '</a>'
             +   '<div class="u">' + esc(h) + '</div>'
             +   (s.note ? '<div class="n">' + esc(s.note) + '</div>' : '')
             + '</div>'
-            + '<button class="more" data-act="sitemenu" data-id="' + esc(s.id) + '">⋯</button>'
+            + '<button class="more" data-act="sitemenu" data-id="' + esc(s.id) + '" aria-label="更多">⋯</button>'
             + '</div>';
     });
     html += '</section>';
@@ -238,112 +307,115 @@ function render(){
 
   if (kw && !shown) html += '<div class="empty">没有匹配「' + esc(q.trim()) + '」的网站</div>';
 
-  html += '<div style="text-align:center;margin-top:6px">'
-        + '<button data-act="newcat">＋ 新建分类</button></div>';
-  html += '<div class="tips">数据只存在这台手机的浏览器里<br>换手机或清缓存前，先用 ⋯ 导出备份</div>';
+  html += '<div style="text-align:center;margin-top:8px"><button data-act="newcat">＋ 新建分类</button></div>';
+  html += '<div class="tips">线上收藏来自仓库里的 <b>data.json</b>，所有人打开都一样<br>'
+        + '你自己新加的先存在本机，点 ⋯ → 发布，粘给我就能上线</div>';
   list.innerHTML = html;
 }
 
 /* ---------- sheet ---------- */
 var mask = document.getElementById("mask");
 var sheet = document.getElementById("sheet");
-
 function openSheet(html){
   sheet.innerHTML = html;
-  mask.classList.add("on");
-  sheet.classList.add("on");
+  mask.classList.add("on"); sheet.classList.add("on");
 }
 function closeSheet(){
-  mask.classList.remove("on");
-  sheet.classList.remove("on");
-  sheet.innerHTML = "";
+  mask.classList.remove("on"); sheet.classList.remove("on"); sheet.innerHTML = "";
 }
 mask.addEventListener("click", closeSheet);
 
-/* ---------- actions ---------- */
 function sheetTools(){
-  openSheet(
-    '<h3>数据与备份</h3>'
-    + '<div class="item" data-act="export">导出备份（复制到剪贴板）</div>'
-    + '<div class="item" data-act="import">从备份导入</div>'
-    + '<div class="item" data-act="newcat">新建分类</div>'
-    + '<div class="item" data-act="close">关闭</div>'
-  );
+  openSheet('<h3>数据</h3>'
+    + '<div class="item" data-act="publish"><div><div>发布本机改动</div>'
+    +   '<div class="sub">把完整数据复制出来，交给 DSH 推送上线</div></div></div>'
+    + '<div class="item" data-act="copydata"><div><div>复制线上数据的备份</div></div></div>'
+    + '<div class="item" data-act="import"><div><div>从备份导入到本机草稿</div></div></div>'
+    + '<div class="item danger" data-act="clearDraft"><div><div>清空本机草稿</div>'
+    +   '<div class="sub">只清本机，线上数据不受影响</div></div></div>'
+    + '<div class="item" data-act="close">关闭</div>');
+}
+
+function sheetItem(html, sub){
+  return '<div class="item">' + html + (sub ? '<div class="sub">' + esc(sub) + '</div>' : '') + '</div>';
 }
 
 function sheetSiteMenu(id){
   var f = findSite(id);
   if (!f) return;
-  openSheet(
-    '<h3>' + esc(f.site.title || hostOf(f.site.url)) + '</h3>'
-    + '<div class="item" data-act="editsite" data-id="' + esc(id) + '">编辑</div>'
+  var isLocal = !!f.site.local;
+  openSheet('<h3>' + esc(f.site.title || hostOf(f.site.url)) + '</h3>'
+    + '<div class="item" data-act="editsite" data-id="' + esc(id) + '">' + (isLocal ? '编辑' : '在本机改一份') + '</div>'
     + '<div class="item" data-act="copysite" data-id="' + esc(id) + '">复制网址</div>'
-    + '<div class="item" data-act="movesite" data-id="' + esc(id) + '" data-dir="-1">上移</div>'
-    + '<div class="item" data-act="movesite" data-id="' + esc(id) + '" data-dir="1">下移</div>'
-    + '<div class="item danger" data-act="delsite" data-id="' + esc(id) + '">删除这个网站</div>'
-    + '<div class="item" data-act="close">取消</div>'
-  );
+    + (isLocal ? '<div class="item" data-act="movesite" data-id="' + esc(id) + '" data-dir="-1">上移</div>'
+              + '<div class="item" data-act="movesite" data-id="' + esc(id) + '" data-dir="1">下移</div>'
+              + '<div class="item danger" data-act="delsite" data-id="' + esc(id) + '">删除</div>' : '')
+    + '<div class="item" data-act="close">取消</div>');
 }
 
 function sheetCatMenu(ci){
-  var cat = db.cats[ci];
+  var cat = view.cats[ci];
   if (!cat) return;
-  openSheet(
-    '<h3>' + esc(cat.name) + '</h3>'
+  openSheet('<h3>' + esc(cat.name) + '</h3>'
     + '<div class="item" data-act="addsite" data-ci="' + ci + '">在这个分类里加网站</div>'
-    + '<div class="item" data-act="renamecat" data-ci="' + ci + '">重命名</div>'
-    + '<div class="item" data-act="movecat" data-ci="' + ci + '" data-dir="-1">上移</div>'
-    + '<div class="item" data-act="movecat" data-ci="' + ci + '" data-dir="1">下移</div>'
-    + '<div class="item danger" data-act="delcat" data-ci="' + ci + '">删除整个分类</div>'
-    + '<div class="item" data-act="close">取消</div>'
-  );
+    + (cat.local || !cat.sites.some(function(s){ return !s.local; })
+        ? '<div class="item" data-act="renamecat" data-ci="' + ci + '">重命名</div>'
+          + '<div class="item danger" data-act="delcat" data-ci="' + ci + '">删除这个分类</div>' : '')
+    + '<div class="item" data-act="close">取消</div>');
 }
 
 function sheetSiteForm(opts){
-  // opts: { id?, ci }
-  var cat, site = { title:"", url:"", note:"" };
+  var site = { title:"", url:"", note:"" };
   var editing = false;
   if (opts.id) {
     var f = findSite(opts.id);
     if (!f) return;
-    editing = true; site = f.site;
+    editing = true;
+    site = f.site;
   }
+  var names = view.cats.map(function(c){ return c.name; });
   var sel = (opts.ci != null) ? opts.ci : 0;
-  cat = db.cats[sel];
-  var options = db.cats.map(function(c, i){
-    return '<option value="' + i + '"' + (i === sel ? " selected" : "") + '>' + esc(c.name) + '</option>';
+  var options = names.map(function(n, i){
+    return '<option value="' + i + '"' + (i === sel ? " selected" : "") + '>' + esc(n) + '</option>';
   }).join("");
-
-  openSheet(
-    '<h3>' + (editing ? "编辑网站" : "加一个网站") + '</h3>'
+  openSheet('<h3>' + (editing ? "编辑网站" : "加一个网站") + '</h3>'
+    + (editing ? '<div class="note-box">线上已有的条目改不动，这里会存成你本机的版本，发布后才影响别人。</div>' : '')
     + '<div class="field"><label>名称</label><input id="f-title" placeholder="比如：TinEye 反向搜图" value="' + esc(site.title) + '"></div>'
     + '<div class="field"><label>网址</label><input id="f-url" inputmode="url" placeholder="tineye.com" value="' + esc(site.url) + '"></div>'
     + '<div class="field"><label>分类</label><select id="f-cat">' + options + '</select></div>'
-    + '<div class="field"><label>备注 / 收藏理由（可空）</label><textarea id="f-note" placeholder="和同类的有什么区别、为什么留着它">' + esc(site.note) + '</textarea></div>'
+    + '<div class="field"><label>备注 / 收藏理由</label><textarea id="f-note" placeholder="和同类的比强在哪、为什么留着它">' + esc(site.note) + '</textarea></div>'
     + '<div class="grp"><button data-act="close">取消</button>'
-    + '<button class="primary" data-act="savesite" data-id="' + esc(opts.id || "") + '">保存</button></div>'
-  );
-  setTimeout(function(){ var el = document.getElementById(editing ? "f-title" : "f-url"); if (el) el.focus(); }, 60);
+    + '<button class="primary" data-act="savesite" data-id="' + esc(opts.id || "") + '">保存到本机</button></div>');
+  setTimeout(function(){ var el = document.getElementById(editing ? "f-title" : "f-url"); if (el) el.focus(); }, 80);
 }
 
 function sheetCatForm(mode, ci){
-  var name = mode === "rename" ? db.cats[ci].name : "";
-  openSheet(
-    '<h3>' + (mode === "rename" ? "重命名分类" : "新建分类") + '</h3>'
-    + '<div class="field"><label>分类名</label><input id="c-name" placeholder="比如：在线工具 / 素材站 / AI 服务" value="' + esc(name) + '"></div>'
+  var name = mode === "rename" ? view.cats[ci].name : "";
+  openSheet('<h3>' + (mode === "rename" ? "重命名分类" : "新建分类") + '</h3>'
+    + '<div class="field"><label>分类名</label><input id="c-name" placeholder="在线工具 / 素材站 / AI 服务" value="' + esc(name) + '"></div>'
     + '<div class="grp"><button data-act="close">取消</button>'
-    + '<button class="primary" data-act="savecat" data-mode="' + mode + '" data-ci="' + (ci == null ? -1 : ci) + '">保存</button></div>'
-  );
-  setTimeout(function(){ var el = document.getElementById("c-name"); if (el) el.focus(); }, 60);
+    + '<button class="primary" data-act="savecat" data-mode="' + mode + '" data-ci="' + (ci == null ? -1 : ci) + '">保存</button></div>');
+  setTimeout(function(){ var el = document.getElementById("c-name"); if (el) el.focus(); }, 80);
 }
 
 function sheetImport(){
-  openSheet(
-    '<h3>从备份导入</h3>'
-    + '<div class="field"><label>把导出的内容粘进来</label><textarea id="f-json" placeholder=\'{"v":1,"cats":[...]}\' style="min-height:120px"></textarea></div>'
-    + '<div class="grp"><button data-act="close">取消</button>'
-    + '<button class="primary" data-act="doimport">导入</button></div>'
-  );
+  openSheet('<h3>从备份导入</h3>'
+    + '<div class="field"><label>把备份内容粘进来（并入本机草稿）</label>'
+    + '<textarea id="f-json" placeholder=\'{"v":1,"cats":[...]}\' style="min-height:130px"></textarea></div>'
+    + '<div class="grp"><button data-act="close">取消</button><button class="primary" data-act="doimport">导入</button></div>');
+}
+
+function localCat(name){
+  var c = local.cats.filter(function(x){ return x.name === name; })[0];
+  if (!c) { c = { id: uid(), name: name, sites: [] }; local.cats.push(c); }
+  return c;
+}
+function findLocalSite(lid){
+  var raw = String(lid).replace(/^L/, "");
+  for (var i=0;i<local.cats.length;i++)
+    for (var j=0;j<local.cats[i].sites.length;j++)
+      if (local.cats[i].sites[j].id === raw) return { cat: local.cats[i], site: local.cats[i].sites[j], si: j };
+  return null;
 }
 
 document.addEventListener("click", function(ev){
@@ -361,8 +433,9 @@ document.addEventListener("click", function(ev){
   if (act === "addsite") return sheetSiteForm({ ci: isNaN(ci) ? 0 : ci });
   if (act === "editsite") return sheetSiteForm({ id: id });
   if (act === "renamecat") return sheetCatForm("rename", ci);
-  if (act === "export") return doExport();
   if (act === "import") return sheetImport();
+  if (act === "copydata") return copyText(JSON.stringify(cloud, null, 2), "线上数据的备份已复制");
+  if (act === "publish") return publishAll();
 
   if (act === "savesite") {
     var title = document.getElementById("f-title").value.trim();
@@ -370,65 +443,59 @@ document.addEventListener("click", function(ev){
     var note = document.getElementById("f-note").value.trim();
     var target = parseInt(document.getElementById("f-cat").value, 10);
     if (!url) { alert("网址不能为空"); return; }
-    if (!db.cats.length) { alert("先建一个分类"); return; }
-    if (id) {
-      var f = findSite(id);
-      if (!f) return closeSheet();
-      var s = { id: f.site.id, title: title || hostOf(url), url: url, note: note };
-      if (target !== f.ci) { f.cat.sites.splice(f.si, 1); db.cats[target].sites.push(s); }
-      else { f.cat.sites[f.si] = s; }
-    } else {
-      db.cats[target].sites.push({ id: uid(), title: title || hostOf(url), url: url, note: note });
-    }
-    save(); closeSheet(); render(); return;
+    var catName = view.cats[target] ? view.cats[target].name : (view.cats[0] && view.cats[0].name);
+    if (!catName) { alert("先建一个分类"); return; }
+    var lc = localCat(catName);
+    lc.sites.push({ id: uid(), title: title || hostOf(url), url: url, note: note });
+    saveDraft(); closeSheet(); render();
+    return;
   }
 
   if (act === "savecat") {
     var nm = document.getElementById("c-name").value.trim();
     if (!nm) { alert("分类名不能为空"); return; }
     var mode = el.getAttribute("data-mode");
-    if (mode === "rename") db.cats[ci].name = nm;
-    else db.cats.push({ id: uid(), name: nm, sites: [] });
-    save(); closeSheet(); render(); return;
+    if (mode === "rename") {
+      var old = view.cats[ci];
+      if (old && old.local) {
+        var t = local.cats.filter(function(x){ return x.name === old.name; })[0];
+        if (t) t.name = nm;
+      } else if (old) {
+        // 线上分类改名 = 本机新建同名分类的占位，仅本机可见
+        localCat(nm);
+      }
+    } else {
+      localCat(nm);
+    }
+    saveDraft(); closeSheet(); render();
+    return;
   }
 
   if (act === "delsite") {
-    var g = findSite(id);
-    if (!g) return closeSheet();
-    if (confirm("删除「" + (g.site.title || hostOf(g.site.url)) + "」？")) {
-      g.cat.sites.splice(g.si, 1);
-      save(); render();
-    }
+    var g = findLocalSite(id);
+    if (!g) { closeSheet(); return; }
+    if (confirm("删除这个网站？")) { g.cat.sites.splice(g.si, 1); saveDraft(); render(); }
     return closeSheet();
   }
 
   if (act === "delcat") {
-    var c = db.cats[ci];
-    if (!c) return closeSheet();
-    if (confirm("删除分类「" + c.name + "」和里面 " + c.sites.length + " 个网站？")) {
-      db.cats.splice(ci, 1);
-      save(); render();
-    }
-    return closeSheet();
-  }
-
-  if (act === "movecat") {
-    var to = ci + dir;
-    if (to >= 0 && to < db.cats.length) {
-      var tmp = db.cats[ci]; db.cats[ci] = db.cats[to]; db.cats[to] = tmp;
-      save(); render();
+    var c0 = view.cats[ci];
+    if (!c0) return closeSheet();
+    if (confirm("删除本机分类「" + c0.name + "」？")) {
+      local.cats = local.cats.filter(function(x){ return x.name !== c0.name; });
+      saveDraft(); render();
     }
     return closeSheet();
   }
 
   if (act === "movesite") {
-    var g2 = findSite(id);
+    var g2 = findLocalSite(id);
     if (!g2) return closeSheet();
     var to2 = g2.si + dir;
     if (to2 >= 0 && to2 < g2.cat.sites.length) {
-      var arr = g2.cat.sites;
-      var t2 = arr[g2.si]; arr[g2.si] = arr[to2]; arr[to2] = t2;
-      save(); render();
+      var arr = g2.cat.sites, tmp = arr[g2.si];
+      arr[g2.si] = arr[to2]; arr[to2] = tmp;
+      saveDraft(); render();
     }
     return closeSheet();
   }
@@ -436,56 +503,60 @@ document.addEventListener("click", function(ev){
   if (act === "copysite") {
     var g3 = findSite(id);
     if (!g3) return closeSheet();
-    var full = normUrl(g3.site.url);
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(full).then(function(){ closeSheet(); }, function(){ prompt("复制网址", full); closeSheet(); });
-    } else { prompt("复制网址", full); closeSheet(); }
+    copyText(normUrl(g3.site.url), "网址已复制");
     return;
+  }
+
+  if (act === "clearDraft") {
+    if (confirm("清空本机草稿？线上数据不受影响。")) { local = emptyDb(); saveDraft(); render(); }
+    return closeSheet();
   }
 
   if (act === "doimport") {
     try {
       var d = JSON.parse(document.getElementById("f-json").value);
-      if (!d || !Array.isArray(d.cats)) throw new Error("格式不对");
-      if (db.cats.length && !confirm("导入会合并到现有收藏，继续？")) return;
+      if (!d || !Array.isArray(d.cats)) throw new Error("bad");
       d.cats.forEach(function(c){
         if (!c || !c.name) return;
-        var exist = db.cats.filter(function(x){ return x.name === c.name; })[0];
-        var target2 = exist || (db.cats[db.cats.push({ id: uid(), name: c.name, sites: [] }) - 1]);
+        var t2 = localCat(c.name);
         (c.sites || []).forEach(function(s){
           if (!s || !s.url) return;
-          target2.sites.push({ id: uid(), title: s.title || hostOf(s.url), url: normUrl(s.url), note: s.note || "" });
+          t2.sites.push({ id: uid(), title: s.title || hostOf(s.url), url: normUrl(s.url), note: s.note || "" });
         });
       });
-      save(); closeSheet(); render();
-      alert("已导入");
-    } catch (e) { alert("导入失败：内容不是有效的备份 JSON"); }
+      saveDraft(); closeSheet(); render();
+      alert("已并入本机草稿");
+    } catch (e) { alert("导入失败：不是有效的备份 JSON"); }
     return;
   }
 });
 
-function doExport(){
-  var json = JSON.stringify(db, null, 2);
+function copyText(text, okMsg){
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(json).then(function(){
-      closeSheet();
-      alert("备份已复制到剪贴板，粘到备忘录或笔记里存好。");
-    }, function(){ fallbackExport(json); });
-  } else fallbackExport(json);
+    navigator.clipboard.writeText(text).then(function(){ closeSheet(); alert(okMsg); },
+      function(){ showText(text); });
+  } else showText(text);
 }
-
-function fallbackExport(json){
-  openSheet('<h3>备份内容（长按全选复制）</h3>'
-    + '<div class="field"><textarea style="min-height:220px">' + esc(json) + '</textarea></div>'
+function showText(text){
+  openSheet('<h3>长按全选复制</h3><div class="field"><textarea style="min-height:230px">' + esc(text) + '</textarea></div>'
     + '<div class="grp"><button class="primary" data-act="close">好</button></div>');
 }
 
-document.getElementById("q").addEventListener("input", function(e){
-  q = e.target.value; render();
-});
+function publishAll(){
+  var data = merged().cats.map(function(c){
+    return { name: c.name, sites: c.sites.map(function(s){
+      return { title: s.title, url: s.url, note: s.note };
+    })};
+  });
+  copyText(JSON.stringify({ v:1, cats:data }, null, 2),
+    "完整数据已复制。把它发给 DSH（在对话里粘贴），就能发布到线上给别人看。");
+}
+
+document.getElementById("q").addEventListener("input", function(e){ q = e.target.value; render(); });
 document.getElementById("btnTools").addEventListener("click", sheetTools);
 
 render();
+loadCloud();
 </script>
 </body>
 </html>
