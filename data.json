@@ -1,4 +1,33 @@
 {
   "v": 1,
-  "cats": []
+  "cats": [
+    {
+      "name": "AI代充网站",
+      "sites": [
+        { "title": "hongyu888.vip", "url": "https://hongyu888.vip/cat/251", "note": "红鱼家的" },
+        { "title": "shop.zynexus.top", "url": "https://shop.zynexus.top/", "note": "GPT便宜" },
+        { "title": "wzyp.cn", "url": "https://wzyp.cn/shop/T2MMIX28", "note": "链动小店" }
+      ]
+    },
+    {
+      "name": "查中国官员升迁落马",
+      "sites": [
+        { "title": "ccporg.org", "url": "https://ccporg.org/", "note": "要科学上网" }
+      ]
+    },
+    {
+      "name": "中转站模型纯度测试网",
+      "sites": [
+        { "title": "gpttest.xyz", "url": "https://gpttest.xyz/", "note": "ChatGPT" }
+      ]
+    },
+    {
+      "name": "中转站",
+      "sites": [
+        { "title": "tokenfuture.si", "url": "https://tokenfuture.si/custom/public-benefits", "note": "公益站 ChatGPT纯度S级" },
+        { "title": "u-ai.me", "url": "https://u-ai.me/keys", "note": "0.03倍率的Grok 联网搜索很差 首字很慢" },
+        { "title": "newapi.gay", "url": "https://newapi.gay/keys", "note": "常用" }
+      ]
+    }
+  ]
 }
